@@ -1,0 +1,30 @@
+PODS:
+  - SendBirdDesk (1.0.5):
+    - SendBirdSDK
+  - SendBirdSDK (3.0.160)
+
+DEPENDENCIES:
+  - SendBirdDesk (from `https://github.com/sendbird/SendBird-Desk-iOS-Framework`, tag `v1.0.5`)
+  - SendBirdSDK
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SendBirdSDK
+
+EXTERNAL SOURCES:
+  SendBirdDesk:
+    :git: https://github.com/sendbird/SendBird-Desk-iOS-Framework
+    :tag: v1.0.5
+
+CHECKOUT OPTIONS:
+  SendBirdDesk:
+    :git: https://github.com/sendbird/SendBird-Desk-iOS-Framework
+    :tag: v1.0.5
+
+SPEC CHECKSUMS:
+  SendBirdDesk: 22f91d4b28bd3d8dae577219efe82bfb9b35340e
+  SendBirdSDK: 55b5a930da0338c50f0fd069a99d9b7b1b9579f2
+
+PODFILE CHECKSUM: 192620c2d478efaf9b39e27210a4b3702e9360d8
+
+COCOAPODS: 1.6.1

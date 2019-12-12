@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SendBirdSDK
+import SendBirdDesk
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +17,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize SendBird Chat
+        SBDMain.initWithApplicationId("192F73AB-EED6-465B-9B77-1F34406B5658")
+        
+        // Connect+Authenticate to SendBird Chat
+        SBDMain.connect(withUserId: "test1", accessToken: "bc2603c5b3c84d512d4923efcb50475165db28fa", completionHandler: { (user, error) in guard error == nil else {
+                print("Encountered Error while SBDMain.connect()")
+                return
+            }
+            // Initialize SendBIrd Desk
+            SBDSKMain.initializeDesk()
+            
+            // Connect+Authenticate to SendBird Desk
+            SBDSKMain.authenticate(withUserId: "test1", accessToken: "bc2603c5b3c84d512d4923efcb50475165db28fa", completionHandler:{ (error) in guard error == nil else {
+                    print("Encountered Error while SBDSKMain.authenticate(): " + error.debugDescription)
+                    return
+                }
+                
+                print("After SendBird Desk Authenticate")
+                // Create Desk Ticket
+                SBDSKTicket.createTicket(withTitle: "iOSDeskTestBedTicket", userName: "test1", completionHandler: { (ticket, error) in guard error == nil else {
+                        print("Encountered Error while SBDSKMain.authenticate() " + error.debugDescription)
+                        return
+                    }
+                    let messageText = "test message"
+                    guard let params = SBDUserMessageParams(message: messageText) else { return }
+          
+                    ticket?.channel?.sendUserMessage(with: params) { (userMessage, error) in
+                        guard error == nil else {   // Error.
+                            return
+                        }
+                    }
+                    print("Created Ticket Title = " + (ticket?.title)!)
+                })
+                
+                // Get Desk Ticket List for Current User
+                SBDSKTicket.getClosedList(withOffset: 0, completionHandler: { (ticketList, hasNext, error) in guard error == nil else {
+                        print("Encountered Error while SBDSKTicket.getClosedList() " + error.debugDescription)
+                        return
+                    }
+                    
+                    print("Closed Ticket List Length = " + String(ticketList.count))
+                    for ticket in ticketList {
+                        print("Ticket Title = " + ticket.title!)
+                    }
+                    
+                })
+            })
+            
+        })
         return true
     }
 
