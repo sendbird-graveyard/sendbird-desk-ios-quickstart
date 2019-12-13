@@ -10,6 +10,9 @@ It goes through the steps of:
 - Sending a Message to a Ticket
 - Retrieving Closed Tickets
 
+Please see the code in AppDelegate.swift:
+https://github.com/sendbird/sendbird-desk-ios-quickstart/blob/master/SendBirdDeskTestBed/AppDelegate.swift
+
 ## How to Run
 1) Clone this repository to local directory.
 2) Install pods using `pod install` in local directory.
