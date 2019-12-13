@@ -16,3 +16,8 @@ It goes through the steps of:
 2) Open workspace in XCode.
 3) (Optional) Replace App ID, User ID and Access Token with your own credentials.
 4) Project should run from local iOS emulator.
+
+
+## Documentation:
+Please see the following link for iOS Desk SDK Documentation
+https://github.com/sendbird/SendBird-Desk-iOS-Framework
